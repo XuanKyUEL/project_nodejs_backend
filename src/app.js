@@ -15,7 +15,10 @@ app.use(helmet()); // Use helmet for security headers
 app.use(compression()); // Use compression for gzip compression
 
 // Init db
-
+// require("./dbs/init.mongodb.lv0");
+require("./dbs/init.mongodb");
+// const { countConnect } = require("./helpers/check_connect");
+// countConnect();
 // Init routes
 app.get("/", (req, res) => {
   const strCompression = "This is a test string to demonstrate compression.";

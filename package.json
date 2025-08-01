@@ -12,14 +12,18 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.0",
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
     "compression": "^1.8.1",
-    "dotenv": "^17.2.1",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.1"
   }
 }

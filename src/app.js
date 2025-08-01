@@ -14,6 +14,12 @@ const app = express();
 app.use(morgan("dev")); // Use 'dev' for concise output colored by response status
 app.use(helmet()); // Use helmet for security headers
 app.use(compression()); // Use compression for gzip compression
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 // console.log("Process ID:", process.env);
 
@@ -23,18 +29,15 @@ require("./databases/init.mongodb");
 // const { countConnect } = require("./helpers/check_connect");
 // countConnect();
 // Init routes
-app.get("/", (req, res) => {
-  const strCompression = "This is a test string to demonstrate compression.";
-  return res.status(500).json({
-    message: "Welcome to WSV eCommerce API",
-    // metaData: strCompression.repeat(10000),
-  });
-});
-
+// app.get("/", (req, res) => {
+//   const strCompression = "This is a test string to demonstrate compression.";
+//   return res.status(500).json({
+//     message: "Welcome to WSV eCommerce API",
+//     // metaData: strCompression.repeat(10000),
+//   });
+// });
+// Init routes
+app.use("/", require("./routes/index"));
 // Handle error
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
 
 module.exports = app;

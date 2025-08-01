@@ -1,3 +1,4 @@
+require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
@@ -14,9 +15,11 @@ app.use(morgan("dev")); // Use 'dev' for concise output colored by response stat
 app.use(helmet()); // Use helmet for security headers
 app.use(compression()); // Use compression for gzip compression
 
+// console.log("Process ID:", process.env);
+
 // Init db
 // require("./dbs/init.mongodb.lv0");
-require("./dbs/init.mongodb");
+require("./databases/init.mongodb");
 // const { countConnect } = require("./helpers/check_connect");
 // countConnect();
 // Init routes

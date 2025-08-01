@@ -2,7 +2,11 @@
 
 const mongoose = require("mongoose");
 
-const connectString = "mongodb://localhost:27017/shopDev";
+const {
+  db: { host, name, port },
+} = require("../configs/config.mongodb");
+console.log(`Connecting to MongoDB at ${host}:${port}/${name}`);
+const connectString = `mongodb://${host}:${port}/${name}`;
 const { countConnect } = require("../helpers/check_connect");
 const { checkOverload } = require("../helpers/check_connect");
 class Database {
@@ -18,9 +22,11 @@ class Database {
     }
 
     mongoose
-      .connect(connectString)
+      .connect(connectString, {
+        maxPoolSize: 50, // Set max pool size to 50
+      })
       .then((_) => {
-        console.log("Connected to MongoDB successfully [PROD]");
+        console.log("Connected to MongoDB successfully at", connectString);
         countConnect(); // Log the number of connections
         // checkOverload(); // Start monitoring connection overload
       })

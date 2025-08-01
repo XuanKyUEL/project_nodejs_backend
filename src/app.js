@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   const strCompression = "This is a test string to demonstrate compression.";
   return res.status(500).json({
     message: "Welcome to WSV eCommerce API",
-    metaData: strCompression.repeat(10000),
+    // metaData: strCompression.repeat(10000),
   });
 });
 

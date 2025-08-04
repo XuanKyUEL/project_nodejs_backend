@@ -1,0 +1,32 @@
+### Create a new API Key
+POST http://localhost:3052/v1/api/apikey
+Content-Type: application/json
+
+{
+  "permissions": ["READ", "WRITE", "DELETE"]
+}
+
+###
+
+### Test shop signup with API Key authentication
+POST http://localhost:3052/v1/api/shop/signup
+Content-Type: application/json
+x-api-key: 0d4a38104c8b1dc744e90b64fd4be14ed7557eeb8194cd9046e79d8d5f028247
+
+{
+  "name": "Another Test Shop",
+  "email": "another-test@example.com",
+  "password": "password123"
+}
+
+###
+
+### Test access without API Key (should fail)
+POST http://localhost:3052/v1/api/shop/signup
+Content-Type: application/json
+
+{
+  "name": "No API Key Shop", 
+  "email": "noapi@example.com",
+  "password": "password123"
+}

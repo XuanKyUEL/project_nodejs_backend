@@ -3,9 +3,10 @@
 ### signup
 POST {{url_dev}}shop/signup
 Content-Type: application/json
+x-api-key: 777a78b6f59bb4537fc9364586f51a0e6a10d446d1238288c7a22a986a2e120b
 
 {
     "name": "Test Shop",
-    "email": "test-lodash@example.com",
+    "email": "test-checkauth_uio@example.com",
     "password": "password123"
 }

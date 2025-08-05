@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const KeyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
+const { BadRequestError } = require("../core/error.response");
 
 const RoleShop = {
   SHOP: "SHOP",
@@ -16,15 +17,18 @@ const RoleShop = {
 
 class AccessService {
   static signup = async ({ name, email, password }) => {
-    try {
+      try {
+        const holderShop = await shopModels.findOne({ email }).lean();
+        if (holderShop) {
+          throw new BadRequestError('ERROR: Shop\'s Email already exists');
+        }
+      } catch (error) {
+        throw new BadRequestError('ERROR: Shop\'s Email already exists');
+      }
       // Perform signup logic here
       const holderShop = await shopModels.findOne({ email }).lean(); // Lean returns a plain JavaScript object instead of a Mongoose document
       if (holderShop) {
-        return {
-          code: "xxx",
-          message: "Email already exists",
-          status: 400,
-        }; // Return early if email already exists
+        throw new BadRequestError('ERROR: Shop\'s Email already exists');
       }
 
       const hashedPassword = await bcrypt.hash(password, 12); // Hash the password with a salt rounds of 12
@@ -95,15 +99,12 @@ class AccessService {
           },
         };
       }
-    } catch (error) {
       return {
         code: "xxx",
-        message: "An error occurred during signup",
+        message: "Error creating shop",
         status: 500,
-        error: error.message,
       };
     }
   };
-}
 
 module.exports = AccessService;

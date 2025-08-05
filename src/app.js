@@ -39,5 +39,6 @@ require("./databases/init.mongodb");
 // Init routes
 app.use("/", require("./routes/index"));
 // Handle error
+app.use(require("./middlewares/errorHandler"));
 
 module.exports = app;

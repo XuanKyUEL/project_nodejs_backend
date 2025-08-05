@@ -11,11 +11,11 @@ Content-Type: application/json
 ### Test shop signup with API Key authentication
 POST http://localhost:3052/v1/api/shop/signup
 Content-Type: application/json
-x-api-key: 0d4a38104c8b1dc744e90b64fd4be14ed7557eeb8194cd9046e79d8d5f028247
+x-api-key: 38ce8ba6b76c64d246ec7f67a2a03c19e9d6a72ff372a13a6c8982f6d0878f29
 
 {
   "name": "Another Test Shop",
-  "email": "another-test@example.com",
+  "email": "another-test78999@example.com",
   "password": "password123"
 }
 

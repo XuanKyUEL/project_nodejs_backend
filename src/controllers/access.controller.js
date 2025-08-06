@@ -8,9 +8,10 @@ const { Created, SuccessResponse } = require("../core/success.response");
 class AccessController {
 
   logIn = async (req, res, next) => {
+    const result = await AccessService.logIn(req.body);
     new SuccessResponse({
       message: "Login successful",
-      metadata: await AccessService.logIn(req.body)
+      metadata: result.metadata
     }).send(res);
   }
 

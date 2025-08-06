@@ -94,10 +94,7 @@ class AccessService {
           message: "Shop created successfully",
           status: 201,
           metadata: {
-            shop: getInfoData({
-              fields: ["_id", "name", "email"],
-              object: newShop,
-            }),
+            shop: getInfoData(["_id", "name", "email"], newShop),
             tokens,
           },
         };
@@ -152,10 +149,7 @@ class AccessService {
 
       return {
         metadata: {
-          shop: getInfoData({
-            fields: ["_id", "name", "email"],
-            object: foundShop,
-          }),
+          shop: getInfoData(["_id", "name", "email"], foundShop),
           tokens,
         },
       };

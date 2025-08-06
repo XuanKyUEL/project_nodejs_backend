@@ -1,0 +1,8 @@
+### Test login without API Key
+POST http://localhost:3052/v1/api/shop/login
+Content-Type: application/json
+
+{
+  "email": "testpostman@gmail.com",
+  "password": "password123"
+}

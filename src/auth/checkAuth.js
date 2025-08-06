@@ -1,30 +1,24 @@
-'use strict'
-
-const { findById } = require("../services/apikey.service");
+'use strict';
 
 const HEADER = {
-    API_KEY: "x-api-key",
-    AUTHORIZATION: "authorization"
+    API_KEY: 'x-api-key',
+    AUTHORIZATION: 'authorization'
 }
 
+const { findById } = require('../services/apikey.service');
+const { ForbiddenError } = require('../core/error.response');
+
 const apiKey = async (req, res, next) => {
-    // Middleware to check API Key
     try {
-        // Check key
-        const key = req.headers[HEADER.API_KEY];
+        const key = req.headers[HEADER.API_KEY]?.toString();
+        
         if (!key) {
-            return res.json({
-                message: 'Forbidden' ,
-                status: 403
-            })
+            throw new ForbiddenError('Forbidden - Missing API Key');
         }
         // Check if key exists in database
         const objKey = await findById(key);
         if (!objKey) {
-            return res.json({
-                message: 'Forbidden',
-                status: 403
-            });
+            throw new ForbiddenError('Forbidden - Invalid API Key');
         }
         
         // Store the API key object for later use
@@ -32,20 +26,14 @@ const apiKey = async (req, res, next) => {
         return next();
 
     } catch (error) {
-        return res.json({
-            message: 'Internal Server Error',
-            status: 500
-        });
+        return next(error);
     }
 }
 
 const permission = (permission) =>{
     return (req, res, next) => {
         if(!req.objKey.permissions || !req.objKey.permissions.includes(permission)) {
-            return res.json({
-                message: 'Permission Denied',
-                status: 403
-            });
+            throw new ForbiddenError('Permission Denied');
         }
         return next();
     }

@@ -26,13 +26,19 @@ const errorHandler = (err, req, res, next) => {
 
   // Custom application errors
   if (err.statusCode) {
-    error = { message: err.message, statusCode: err.statusCode };
+    return res.status(err.statusCode).json({
+      success: false,
+      message: err.message,
+      statusCode: err.statusCode,
+      ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    });
   }
 
   // Default to 500 server error
   res.status(error.statusCode || 500).json({
     success: false,
-    error: error.message || 'Internal Server Error',
+    message: error.message || 'Internal Server Error',
+    statusCode: error.statusCode || 500,
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
   });
 }

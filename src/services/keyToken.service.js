@@ -1,5 +1,6 @@
 "use strict";
 
+const { filter, update } = require("lodash");
 const keyTokenModel = require("../models/keytoken.model");
 const { Types } = require("mongoose");
 
@@ -11,22 +12,25 @@ class KeyTokenService {
     refreshToken,
   }) => {
     try {
-      // Level advanced
-      const filter = { user: userId };
-      const update = {
-        publicKey,
-        privateKey,
-        refreshTokensUsed: [],
-        refreshToken,
-      };
-      const options = { upsert: true, new: true };
 
-      const tokens = await keyTokenModel.findOneAndUpdate(
-        filter,
-        update,
-        options
-      );
+      "use strict";
 
+const keyTokenModel = require("../models/keytoken.model");
+const { Types } = require("mongoose");
+
+class KeyTokenService {
+  static createKeyToken = async ({
+    userId,
+    publicKey,
+    privateKey,
+    refreshToken,
+  }) => {
+    try {
+      const filter = { user: userId }, update = {
+        publicKey, privateKey, refreshTokensUsed: [], refreshToken
+      }, options = { upsert: true, new: true };
+
+      const tokens = await keyTokenModel.findOneAndUpdate(filter, update, options);
       return tokens ? tokens.publicKey : null;
     } catch (error) {
       console.error("Error creating key token:", error);
@@ -56,5 +60,17 @@ class KeyTokenService {
     return await keyTokenModel.deleteOne({ user: new Types.ObjectId(userId) });
   };
 }
+
+module.exports = KeyTokenService;
+
+      const tokens = await keyTokenModel.findOneAndUpdate(filter, update, options)
+      return tokens ? tokens.publicKey : null;
+
+} catch (error) {
+      return error
+    }
+  }
+}
+
 
 module.exports = KeyTokenService;

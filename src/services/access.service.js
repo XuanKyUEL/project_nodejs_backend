@@ -6,7 +6,8 @@ const crypto = require("crypto");
 const KeyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
-const { BadRequestError } = require("../core/error.response");
+const { BadRequestError, AuthFailureError } = require("../core/error.response");
+const { findByEmail } = require("./shop.service");
 
 const RoleShop = {
   SHOP: "SHOP",
@@ -16,6 +17,8 @@ const RoleShop = {
 };
 
 class AccessService {
+
+
   static signup = async ({ name, email, password }) => {
       try {
         const holderShop = await shopModels.findOne({ email }).lean();
@@ -104,7 +107,62 @@ class AccessService {
         message: "Error creating shop",
         status: 500,
       };
+  };
+
+  static logIn = async ({ email, password }) => {
+    try {
+      // 1. Check if email exists
+      const foundShop = await shopModels.findOne({ email }).lean();
+      if (!foundShop) {
+        throw new BadRequestError('Shop not registered');
+      }
+
+      // 2. Match password
+      const match = await bcrypt.compare(password, foundShop.password);
+      if (!match) {
+        throw new AuthFailureError('Authentication failed');
+      }
+
+      // 3. Create Access Token & Refresh Token and save
+      const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
+        modulusLength: 4096,
+        publicKeyEncoding: {
+          type: "pkcs1",
+          format: "pem",
+        },
+        privateKeyEncoding: {
+          type: "pkcs8",
+          format: "pem",
+        },
+      });
+
+      // 4. Generate tokens
+      const tokens = await createTokenPair(
+        { userId: foundShop._id, email: foundShop.email },
+        publicKey,
+        privateKey
+      );
+
+      await KeyTokenService.createKeyToken({
+        userId: foundShop._id,
+        publicKey,
+        privateKey,
+        refreshToken: tokens.refreshToken,
+      });
+
+      return {
+        metadata: {
+          shop: getInfoData({
+            fields: ["_id", "name", "email"],
+            object: foundShop,
+          }),
+          tokens,
+        },
+      };
+    } catch (error) {
+      throw error;
     }
   };
+}
 
 module.exports = AccessService;

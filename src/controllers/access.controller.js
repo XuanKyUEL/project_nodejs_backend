@@ -7,6 +7,13 @@ const { Created, SuccessResponse } = require("../core/success.response");
 
 class AccessController {
 
+  logOut = async (req, res, next) => {
+    new SuccessResponse({
+      message: "Logout successful",
+      metadata: await AccessService.logOut({ keyStore: req.keyStore })
+    }).send(res);
+  }
+
   logIn = async (req, res, next) => {
     const result = await AccessService.logIn(req.body);
     new SuccessResponse({
@@ -16,13 +23,8 @@ class AccessController {
   }
 
   signUp = async (req, res, next) => {
-    // try {
-    //   const result = await AccessService.signup(req.body);
-    //   return res.status(result.status).json(result);
-    // } catch (error) {
-    //   next(error);
-    // }
-    new Created({ message: "User created successfully", metadata: await AccessService.signup(req.body) }).send(res);
+    const result = await AccessService.signup(req.body);
+    new Created({ message: "User created successfully", metadata: result }).send(res);
   }
 }
 

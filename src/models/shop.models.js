@@ -17,6 +17,8 @@ const shopSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
+      indexedDB: true, // Ensure email is indexed for faster queries
     },
     password: {
       type: String,

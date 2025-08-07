@@ -1,6 +1,6 @@
 'use strict'
 
-const shopModels = require("../models/shop.models")
+const shopModels = require("../models/shop.model")
 
 const findByEmail = async (email) => {
   // Find shop by email

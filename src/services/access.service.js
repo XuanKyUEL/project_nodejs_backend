@@ -1,6 +1,6 @@
 "use strict";
 
-const shopModels = require("../models/shop.models");
+const shopModels = require("../models/shop.model");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const KeyTokenService = require("./keyToken.service");

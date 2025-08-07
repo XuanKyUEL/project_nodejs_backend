@@ -1,0 +1,56 @@
+### Create Product - Clothing Type
+POST http://localhost:3052/v1/api/product/create-product
+Content-Type: application/json
+x-api-key: 5961ba7ba4620ba62fc0acde6a9f1ef8f46cecff45bc5835809eee69e071a2aa
+authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODkyYzVlODVmMTEzMDk4MDllMTUzNTciLCJlbWFpbCI6InRlc3Rwb3N0bWFuQGdtYWlsLmNvbSIsImlhdCI6MTc1NDU1OTk3OCwiZXhwIjoxNzU0NzMyNzc4fQ.QgYpnq7SZdwPo4lFhgROb2zPwHHDiWQouLFqqH-r-VYk7ibaMW6eMHC3MXYitphwbnnrtJ3WPB51KF3DivLg7wo2Hc1v-ZpRQgS4qYnGJ8GB6XZ2mt1UbtauZwso4z39b1cnsXhll0OC6B3gH4BUOOkT2mRV1DJGA5Fbtx9ipOBs9rQA4_lLE5djOqDfn4mee2CzYN5TP3LxLzm-Bfs9kGocZEOPkLDPm8vpK3VGN9senxcktKLOBfFjyfmlfUAUUMELWLtf3dH-2AyeV05V-4CQ_0uS-UN4J9PrEvXrSF_iDbJO98JZImE3qK-43a2Wc_R7xcM1lWVSaen4FQGn0QphkpqUu6pJsatwwMW7CFUeDDxv6yhrf4W3XGMIvIHFI_vCSKR2rIh3Uk91MOBwRsK7dhNjsk_oHIo3rHj-Z-c67qjcwxbTnHiuQuHcfgZ7gJg9EnIatU2kPlmwuGrIb2T8RpzNjid-ZkkWkwwV1NU_9dWwO_ZQUub840OZ14b6yaxtVVhFhnQLCm_3jzV_RzXA0lC-45VGEKmnPT-Z-Rq2fc50cVVQ8StfQm5Ybw9BtGExPz4D2q-A5oI3ee69VWLIbWgAbx-RjYjibTO59UxSSnen2Rz9ynrqUXn6E1XVhkmNoDr90Hm7wCMIknO3KB7wd6GEgCp_HweWXyEpQpc
+x-client-id: 6892c5e85f11309809e15357
+
+{
+    "product_name": "Premium T-Shirt",
+    "product_description": "High quality cotton t-shirt",
+    "product_type": "Clothing",
+    "product_thumb": "https://example.com/t-shirt-thumb.jpg",
+    "product_shop": "6892c5e85f11309809e15357",
+    "product_price": 29.99,
+    "product_quantity": 50,
+    "product_attributes": {
+        "brand": "Premium Brand",
+        "size": "L",
+        "material": "Cotton"
+    }
+}
+
+###
+
+### Create Product - Electronics Type
+POST http://localhost:3052/v1/api/product/create-product
+Content-Type: application/json
+x-api-key: 5961ba7ba4620ba62fc0acde6a9f1ef8f46cecff45bc5835809eee69e071a2aa
+authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODkyYzVlODVmMTEzMDk4MDllMTUzNTciLCJlbWFpbCI6InRlc3Rwb3N0bWFuQGdtYWlsLmNvbSIsImlhdCI6MTc1NDU1OTk3OCwiZXhwIjoxNzU0NzMyNzc4fQ.QgYpnq7SZdwPo4lFhgROb2zPwHHDiWQouLFqqH-r-VYk7ibaMW6eMHC3MXYitphwbnnrtJ3WPB51KF3DivLg7wo2Hc1v-ZpRQgS4qYnGJ8GB6XZ2mt1UbtauZwso4z39b1cnsXhll0OC6B3gH4BUOOkT2mRV1DJGA5Fbtx9ipOBs9rQA4_lLE5djOqDfn4mee2CzYN5TP3LxLzm-Bfs9kGocZEOPkLDPm8vpK3VGN9senxcktKLOBfFjyfmlfUAUUMELWLtf3dH-2AyeV05V-4CQ_0uS-UN4J9PrEvXrSF_iDbJO98JZImE3qK-43a2Wc_R7xcM1lWVSaen4FQGn0QphkpqUu6pJsatwwMW7CFUeDDxv6yhrf4W3XGMIvIHFI_vCSKR2rIh3Uk91MOBwRsK7dhNjsk_oHIo3rHj-Z-c67qjcwxbTnHiuQuHcfgZ7gJg9EnIatU2kPlmwuGrIb2T8RpzNjid-ZkkWkwwV1NU_9dWwO_ZQUub840OZ14b6yaxtVVhFhnQLCm_3jzV_RzXA0lC-45VGEKmnPT-Z-Rq2fc50cVVQ8StfQm5Ybw9BtGExPz4D2q-A5oI3ee69VWLIbWgAbx-RjYjibTO59UxSSnen2Rz9ynrqUXn6E1XVhkmNoDr90Hm7wCMIknO3KB7wd6GEgCp_HweWXyEpQpc
+x-client-id: 6892c5e85f11309809e15357
+
+{
+    "product_name": "Smartphone X",
+    "product_description": "Latest smartphone with advanced features",
+    "product_type": "Electronics",
+    "product_thumb": "https://example.com/smartphone-thumb.jpg",
+    "product_shop": "6892c5e85f11309809e15357",
+    "product_price": 899.99,
+    "product_quantity": 20,
+    "product_attributes": {
+        "manufacturer": "TechCorp",
+        "model": "X-Pro",
+        "color": "Black"
+    }
+}
+
+###
+
+### Get fresh login tokens if needed
+POST http://localhost:3052/v1/api/shop/login
+Content-Type: application/json
+
+{
+  "email": "testpostman@gmail.com",
+  "password": "password123"
+}

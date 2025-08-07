@@ -1,0 +1,20 @@
+### WORKING Refresh Token Test
+POST http://localhost:3052/v1/api/product/create-product
+Content-Type: application/json
+x-api-key: 5961ba7ba4620ba62fc0acde6a9f1ef8f46cecff45bc5835809eee69e071a2aa
+authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODkyYzVlODVmMTEzMDk4MDllMTUzNTciLCJlbWFpbCI6InRlc3Rwb3N0bWFuQGdtYWlsLmNvbSIsImlhdCI6MTc1NDU1OTY4NywiZXhwIjoxNzU0NzMyNDg3fQ.V3_l5pVLlQYsCS0Ufv76Lh7xWcES7F7GkiIp94xBEof7tVnu-XpP1pKFGtZn-2B2wwWRPk5P1hsQLeqB5AeNp06mtK8HJiDYimI7W9Nfe5JnS73fMQgCUyP6fi2HLVMCwcskxwTuY2Xhitv-792NNakN20aMnRAN7gFzdDUuJ4oevylursUuBU2-7c10riCrI3VPB96E12vh-YRnxTTM8E5zhHrHmeP_smxa3a7Oa3kUxypyOMV3Nda1ZAWqYZECAdh-vA0_1lKaxFlmModf-Ez5Z9NCa-I2Wz0O5Uung-xJ54IXFgAKI06a7IwaRMZ50ELguGcMbRsJgpuRo9IsB-P6Ma4rx1yy2-FOgzEeB-VGhtv8gOxkkqqIA3xmzSq5dhb2V4un9B2j0SrL-DwssiMdd4DK4XaN4nRfvCQfRWMQcWFl0BRxqCThAHZYYcWmDe-kot-xWzCAaozUR5IEh2hgRq18kPK5z9m7CqawJ3iA6F_9sRwuXlhSRaDbt8lOTaJ5HO5fID6qpTYYFPGANPQiKOGHLUEGKDaD8iGyhu89npDzutThBi3WyCObSVKPe8538LZXmIpapUK2mCjXL0sfi0_Z9uMo6LNFQGJgZ-T4bA6Ocd9jczr5VpxWOLnUoKy77TJXet3PoAiUjebrjhpviWwFkiw4ISg8tK5kZr0
+x-client-id: 6892c5e85f11309809e15357
+
+{
+  "productName": "New Jeans",
+  "product_description": "Latest model of New Jeans",
+  "productType": "Clothing",
+  "product_thumb": "https://example.com/new-jeans-thumb.jpg",
+  "product_price": 49.99,
+  "product_quantity": 100,
+  "productAttributes": {
+    "brand": "New Jeans",
+    "size": "M",
+    "material": "Denim"
+  }
+}

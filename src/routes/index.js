@@ -7,8 +7,10 @@ const router = express.Router();
 
 // Routes that don't require API key (public routes)
 router.use("/v1/api/apikey", require("./apikey"));
-router.use("/v1/api", require("./access")); // Login/signup should be public
+router.use("/v1/api/product", require("./product"));// Product routes can be public or protected based on your design
 
+
+router.use("/v1/api", require("./access")); // Login/signup should be public
 //check API Key for protected routes
 router.use(apiKey);
 

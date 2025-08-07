@@ -56,6 +56,17 @@ class KeyTokenService {
     // Đã sửa: không cần new Types.ObjectId
     return await keyTokenModel.deleteOne({ user: userId });
   };
+
+  static updateRefreshToken = async (keyTokenId, oldRefreshToken, newRefreshToken) => {
+    return await keyTokenModel.findByIdAndUpdate(
+      keyTokenId,
+      {
+        $set: { refreshToken: newRefreshToken },
+        $addToSet: { refreshTokensUsed: oldRefreshToken }
+      },
+      { new: true }
+    );
+  };
 }
 
 module.exports = KeyTokenService;

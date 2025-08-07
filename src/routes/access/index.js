@@ -10,10 +10,12 @@ const { authentication } = require("../../auth/authUtils");
 router.post("/shop/signup", asyncHandler(accessController.signUp));
 router.post("/shop/login", asyncHandler(accessController.logIn));
 
+
 // Authentication //
 router.use(authentication)
 
 // 
 router.post("/shop/logout", asyncHandler(accessController.logOut));
+router.post("/shop/refresh-token", asyncHandler(accessController.handlerRefreshToken));
 
 module.exports = router;

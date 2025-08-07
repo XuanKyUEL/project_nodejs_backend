@@ -1,0 +1,19 @@
+### WORKING Refresh Token Test
+POST http://localhost:3052/v1/api/shop/refresh-token
+Content-Type: application/json
+x-api-key: 5961ba7ba4620ba62fc0acde6a9f1ef8f46cecff45bc5835809eee69e071a2aa
+
+{
+  "refreshToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODkyYzVlODVmMTEzMDk4MDllMTUzNTciLCJlbWFpbCI6InRlc3Rwb3N0bWFuQGdtYWlsLmNvbSIsImlhdCI6MTc1NDU1MDU0NSwiZXhwIjoxNzU1MTU1MzQ1fQ.OnfJsBhPFigDgsZOTeFn8W3ZjB7ISmytq90zRRwuFXZK3beU7CzzXPrhxOl-DgklbUS8FP9jM3XKoUcigR1myl3GaY8nH4Chp91RDvZg3K_sTnDA8mVBVSOksL1zD0rYzlVQ2Jqb6qsvY-Ub8gAn8ZmXya3hWdZjtbEO1fW1UJT8KK7vFbxymNzrcDhGx5HYtSMtzv-6XHsqnmMA1gOztemMyZxsZu6i1zK-FEYx1N2YjdFFF9lRkgSPECVvGp612XuLUtpfEpcTMF2Gz74gEm9KifnvkXETp7T6esNuvxKujokVKGcBp8MR1AJGnpOZZf9XCAAECqqkc-kaDdZSqgEbi6OpRQFnsrp_AWmcejyg-pHCkxYIQT5wW6D8YyOrY-HJPg54Vss5Hf0O1uc1dqjQi2S6UeyIqHBRwxQ64JDwJTNTOVvNql_3568PA9Zu7g86vDPQ5kPmF7EbMPhL8aFlrsPTCbZmrUpJ8hi4-pLLtj4i0lRRCRD91hjQ9uDKcsKRJv-fg5Nb48BCOzxqbwDXCNI3olm0HeGKcKCCzrQDJ3tZjKS9CIJ1dNSAMOt591_GuMZCxhDtMj1JqPb_JXua7GHWm-0H1CsWcC174oOBDxVtbqVQ4nvVJxqFD8Yh8O7mobw6Ap8VcIDkFQzYMBQxGyRAX0-B4DpkO1wKs5k"
+}
+
+###
+
+### Get fresh tokens for testing
+POST http://localhost:3052/v1/api/shop/login
+Content-Type: application/json
+
+{
+  "email": "testpostman@gmail.com",
+  "password": "password123"
+}

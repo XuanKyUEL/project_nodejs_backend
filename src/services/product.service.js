@@ -24,8 +24,9 @@ class ProductFactory {
                 console.log("Creating Electronics product with payload:", payload);
                 productInstance = new Electronics(payload);
                 break;
-            // case 'Furniture':
-            //     return new Furniture(payload);
+            case 'Furniture':
+                console.log("Creating Furniture product with payload:", payload);
+                return new Furniture(payload);
             default:
                 throw new BadRequestError(`ERROR: Product type ${type} is not supported`);
         }
@@ -84,6 +85,17 @@ class Electronics extends Product {
         const newProduct = await super.createProduct();
         if (!newProduct) throw new BadRequestError('ERROR: Failed to create product');
 
+        return newProduct;
+    }
+}
+
+class Furniture extends Product {
+    async createProduct() {
+        const newFurniture = await furniture.create(this.product_attributes);
+        if (!newFurniture) throw new BadRequestError('ERROR: Failed to create furniture product');
+        
+        const newProduct = await super.createProduct();
+        if (!newProduct) throw new BadRequestError('ERROR: Failed to create product');
         return newProduct;
     }
 }

@@ -84,6 +84,25 @@ const electronicsSchema = new Schema ({
     timestamps: true,
 });
 
+// Define the product type = Furniture
+const furnitureSchema = new Schema ({
+    material: {
+        type: String,
+        required: true,
+    },
+    dimensions: {
+        type: String,
+        required: true,
+    },
+    weight: {
+        type: Number,
+        required: true,
+    },
+}, {
+    collection: 'furniture',
+    timestamps: true,
+});
+
 
 //Export the model
 module.exports = {

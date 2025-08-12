@@ -11,28 +11,43 @@ class ProductFactory {
      * Type: "Clothing"
      * payload
      */
+    static productRegistry = {
+        Clothing: clothing,
+        Electronics: electronics,
+        Furniture: furniture
+    }; // key - class
+
+    static registerProductType (type, classRef) {
+        ProductFactory.productRegistry[type] = classRef;
+    }
+
     static async createProduct(type, payload) {
-        console.log("ProductFactory.createProduct called with type:", type, "payload:", payload);
-        
-        let productInstance;
-        switch (type) {
-            case 'Clothing':
-                console.log("Creating Clothing product with payload:", payload);
-                productInstance = new Clothing(payload);
-                break;
-            case 'Electronics':
-                console.log("Creating Electronics product with payload:", payload);
-                productInstance = new Electronics(payload);
-                break; 
-            case 'Furniture':
-                console.log("Creating Furniture product with payload:", payload);
-                return new Furniture(payload);
-            default:
-                throw new BadRequestError(`ERROR: Product type ${type} is not supported`);
+        const productClass = ProductFactory.productRegistry[type];
+        if (!productClass) {
+            throw new BadRequestError(`ERROR: Product type ${type} is not supported`);
         }
+        return new productClass(payload).createProduct();
+        // console.log("ProductFactory.createProduct called with type:", type, "payload:", payload);
         
-        // Actually call the createProduct method to save to database
-        return await productInstance.createProduct();
+        // let productInstance;
+        // switch (type) {
+        //     case 'Clothing':
+        //         console.log("Creating Clothing product with payload:", payload);
+        //         productInstance = new Clothing(payload);
+        //         break;
+        //     case 'Electronics':
+        //         console.log("Creating Electronics product with payload:", payload);
+        //         productInstance = new Electronics(payload);
+        //         break; 
+        //     case 'Furniture':
+        //         console.log("Creating Furniture product with payload:", payload);
+        //         return new Furniture(payload);
+        //     default:
+        //         throw new BadRequestError(`ERROR: Product type ${type} is not supported`);
+        // }
+        
+        // // Actually call the createProduct method to save to database
+        // return await productInstance.createProduct();
     }
 }
 
@@ -120,5 +135,10 @@ class Furniture extends Product {
         return newProduct;
     }
 }
+
+// registry product type
+ProductFactory.registerProductType('Clothing', Clothing);
+ProductFactory.registerProductType('Electronics', Electronics);
+ProductFactory.registerProductType('Furniture', Furniture);
 
 module.exports = ProductFactory;

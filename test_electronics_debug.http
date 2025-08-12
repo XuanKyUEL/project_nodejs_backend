@@ -1,0 +1,43 @@
+### Test Electronics Product Creation - CORRECTED
+POST http://localhost:3052/v1/api/product/create-product
+Content-Type: application/json
+x-api-key: 5961ba7ba4620ba62fc0acde6a9f1ef8f46cecff45bc5835809eee69e071a2aa
+authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODkyYzVlODVmMTEzMDk4MDllMTUzNTciLCJlbWFpbCI6InRlc3Rwb3N0bWFuQGdtYWlsLmNvbSIsImlhdCI6MTc1NDk3Mzk0OSwiZXhwIjoxNzU1MTQ2NzQ5fQ.kNAWvIxijpZ-XdgGkMhzR7CW5k-Zw_U-KCi9cgee-oWO3nVMhdMsMC9oBTSc7lXRToQ1P-NfTIH834ectdTBeqcaWlBiT2gQ3PyUL79m7tBIb3a_oIgBkYvGIIqSAaOZH5A6GDC7yqW6FB83_g3GGeIdPRXolaNVAR3-Ars54yRtBdcPJMXMnB5_soAAHkvgIOkEGSa5fX0-yJ_spCNJyKiD-gov8KE3PjYeSi_ewDBu0N8SMHQSMVzeKHSlPPLEGzN6LI0t8d2Iv9M3nxiSF-mxFRZTjPr1nzDGC9TTvbXcqVAKLzYTecbgFoSi2JPHFQGaTCWBhOZkGYNRqiUYlf-A625ZMZOkkod2ZWpy_ALNzccV3QomjfJDGeu68iJ8WW8sL7xPVHAMKUk6_eIuzms6tBEls9KE0joKXBxM7EP49qLPN5ncE1spFJUa1d9KinivutY_HZfkurEk8EK8FYslxEAb3oqlZDxYyn_GR5X0IKuPav5DpEnsm5io6GWTBIpvP_MeDFdg5PL3LmD9hGHRlRPnDMOemM6Car_AY1ihTahk5lw6I06wR8k3R6fZu9zBmZNcBh4OGxT81nCyiJAqxA_z2r6HQ2Fr7d_8oVd51lYV0I_M15M65Z_ggHV9G7p80JyUSj7oa-fTA4AeznNFHgUKthBmzWl24W5ZJoQ
+x-client-id: 6892c5e85f11309809e15357
+
+{
+    "product_name": "OPPO X200 Ultra",
+    "product_description": "Latest model Oppo",
+    "product_type": "Electronics",
+    "product_thumb": "https://example.com/oppo-thumb.jpg",
+    "product_price": 500,
+    "product_quantity": 10,
+    "product_attributes": {
+        "manufacturer": "OPPO",
+        "model": "X200 Ultra",
+        "color": "white"
+    }
+}
+
+###
+
+### Test Wrong Electronics Fields (will cause hang)
+POST http://localhost:3052/v1/api/product/create-product
+Content-Type: application/json
+x-api-key: 5961ba7ba4620ba62fc0acde6a9f1ef8f46cecff45bc5835809eee69e071a2aa
+authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODkyYzVlODVmMTEzMDk4MDllMTUzNTciLCJlbWFpbCI6InRlc3Rwb3N0bWFuQGdtYWlsLmNvbSIsImlhdCI6MTc1NDk3Mzk0OSwiZXhwIjoxNzU1MTQ2NzQ5fQ.kNAWvIxijpZ-XdgGkMhzR7CW5k-Zw_U-KCi9cgee-oWO3nVMhdMsMC9oBTSc7lXRToQ1P-NfTIH834ectdTBeqcaWlBiT2gQ3PyUL79m7tBIb3a_oIgBkYvGIIqSAaOZH5A6GDC7yqW6FB83_g3GGeIdPRXolaNVAR3-Ars54yRtBdcPJMXMnB5_soAAHkvgIOkEGSa5fX0-yJ_spCNJyKiD-gov8KE3PjYeSi_ewDBu0N8SMHQSMVzeKHSlPPLEGzN6LI0t8d2Iv9M3nxiSF-mxFRZTjPr1nzDGC9TTvbXcqVAKLzYTecbgFoSi2JPHFQGaTCWBhOZkGYNRqiUYlf-A625ZMZOkkod2ZWpy_ALNzccV3QomjfJDGeu68iJ8WW8sL7xPVHAMKUk6_eIuzms6tBEls9KE0joKXBxM7EP49qLPN5ncE1spFJUa1d9KinivutY_HZfkurEk8EK8FYslxEAb3oqlZDxYyn_GR5X0IKuPav5DpEnsm5io6GWTBIpvP_MeDFdg5PL3LmD9hGHRlRPnDMOemM6Car_AY1ihTahk5lw6I06wR8k3R6fZu9zBmZNcBh4OGxT81nCyiJAqxA_z2r6HQ2Fr7d_8oVd51lYV0I_M15M65Z_ggHV9G7p80JyUSj7oa-fTA4AeznNFHgUKthBmzWl24W5ZJoQ
+x-client-id: 6892c5e85f11309809e15357
+
+{
+    "product_name": "OPPO X200 Ultra",
+    "product_description": "Latest model Oppo",
+    "product_type": "Electronics",
+    "product_thumb": "https://example.com/oppo-thumb.jpg",
+    "product_price": 500,
+    "product_quantity": 10,
+    "product_attributes": {
+        "brand": "OPPO",
+        "model": "X200 Ultra",
+        "color": "white"
+    }
+}

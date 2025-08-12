@@ -5,11 +5,34 @@ const { Created, SuccessResponse } = require("../core/success.response");
 
 class ProductController {
   createProduct = async (req, res, next) => {
-    console.log("Creating product with payload:", req.body);
-    new SuccessResponse({
-      message: "Product created successfully",
-      metadata: await ProductService.createProduct(req.body.product_type, req.body)
-    }).send(res);
+    try {
+      console.log("=== CREATE PRODUCT CONTROLLER START ===");
+      console.log("Request body:", JSON.stringify(req.body, null, 2));
+      console.log("User ID:", req.user?.userId);
+      console.log("Product type:", req.body.product_type);
+      
+      const productData = {
+        ...req.body,
+        product_shop: req.user.userId
+      };
+      
+      console.log("Final product data:", JSON.stringify(productData, null, 2));
+      console.log("Calling ProductService.createProduct...");
+      
+      const result = await ProductService.createProduct(req.body.product_type, productData);
+      
+      console.log("Product created successfully:", result);
+      
+      new SuccessResponse({
+        message: "Product created successfully",
+        metadata: result
+      }).send(res);
+      
+      console.log("=== CREATE PRODUCT CONTROLLER END ===");
+    } catch (error) {
+      console.error("Error in createProduct controller:", error);
+      next(error);
+    }
   }
 }
 

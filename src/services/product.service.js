@@ -23,7 +23,7 @@ class ProductFactory {
             case 'Electronics':
                 console.log("Creating Electronics product with payload:", payload);
                 productInstance = new Electronics(payload);
-                break;
+                break; 
             case 'Furniture':
                 console.log("Creating Furniture product with payload:", payload);
                 return new Furniture(payload);
@@ -58,8 +58,8 @@ class Product {
     }
 
     // create new product
-    async createProduct() {
-        return await product.create(this); 
+    async createProduct(product_id) {
+        return await product.create({...this, _id: product_id});
     }
 }
 
@@ -67,7 +67,10 @@ class Product {
 // Define subclasses for each product type
 class Clothing extends Product {
     async createProduct() {
-        const newClothing = await clothing.create(this.product_attributes);
+        const newClothing = await clothing.create({
+            ...this.product_attributes,
+            product_shop: this.product_shop
+        });
         if (!newClothing) throw new BadRequestError('ERROR: Failed to create clothing product');
 
         const newProduct = await super.createProduct();
@@ -79,19 +82,37 @@ class Clothing extends Product {
 
 class Electronics extends Product {
     async createProduct() {
-        const newElectronics = await electronics.create(this.product_attributes);
-        if (!newElectronics) throw new BadRequestError('ERROR: Failed to create electronics product');
+        try {
+            console.log("Creating Electronics with attributes:", this.product_attributes);
+            console.log("Electronics shop:", this.product_shop);
+            
+            const electronicsData = {
+                ...this.product_attributes,
+                product_shop: this.product_shop
+            };
+            
+            console.log("Final electronics data:", electronicsData);
+            
+            const newElectronics = await electronics.create(electronicsData);
+            if (!newElectronics) throw new BadRequestError('ERROR: Failed to create electronics product');
 
-        const newProduct = await super.createProduct();
-        if (!newProduct) throw new BadRequestError('ERROR: Failed to create product');
+            const newProduct = await super.createProduct();
+            if (!newProduct) throw new BadRequestError('ERROR: Failed to create product');
 
-        return newProduct;
+            return newProduct;
+        } catch (error) {
+            console.error("Electronics creation error:", error);
+            throw new BadRequestError(`ERROR: Electronics creation failed - ${error.message}`);
+        }
     }
 }
 
 class Furniture extends Product {
     async createProduct() {
-        const newFurniture = await furniture.create(this.product_attributes);
+        const newFurniture = await furniture.create({
+            ...this.product_attributes,
+            product_shop: this.product_shop
+        });
         if (!newFurniture) throw new BadRequestError('ERROR: Failed to create furniture product');
         
         const newProduct = await super.createProduct();

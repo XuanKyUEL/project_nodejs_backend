@@ -119,8 +119,8 @@ const authentication = asyncHandler( async (req, res, next) => {
       if (decodedUser.userId !== userId) {
         throw new AuthFailureError('Invalid User');
       }
-      req.keyStore = keyStore;
-      req.user = decodedUser;
+      // req.keyStore = keyStore;
+      // req.user = decodedUser;
       return next();
     } catch (error) {
       throw new AuthFailureError(error.message || 'Invalid Token');
@@ -141,9 +141,12 @@ const authentication = asyncHandler( async (req, res, next) => {
     if (!decodedUser || !decodedUser.userId) {
       throw new AuthFailureError('Invalid Token: No userId found');
     }
+    req.keyStore = keyStore;
+    req.user = decodedUser; // userId and email
     if (decodedUser.userId !== userId) {
       throw new AuthFailureError('Invalid User');
     }
+    return next(); // Sửa: Thêm next() để tiếp tục middleware chain
   } catch (error) {
     throw new AuthFailureError(error.message || 'Invalid Token');
   }

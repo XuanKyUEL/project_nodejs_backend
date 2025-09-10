@@ -12,5 +12,9 @@ router.use(authentication)
 
 // Product routes
 router.post("/create-product", asyncHandler(ProductController.createProduct));
+router.post("/publish-product/:id", asyncHandler(ProductController.publishedProductByShop));
+
+router.get("/get-drafts", asyncHandler(ProductController.getAllDraftsForShop));
+router.get("/get-published", asyncHandler(ProductController.getAllPublishedForShop));
 
 module.exports = router;

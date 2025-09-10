@@ -3,7 +3,7 @@
 const { isDate } = require("lodash");
 const { BadRequestError } = require("../core/error.response");
 const {product, clothing, electronics, furniture} = require("../models/product.model");
-const { findAllDraftsForShop } = require("../repositories/product.repo");
+const { findAllDraftsForShop, publishProductByShop, findAllPublishedForShop } = require("../repositories/product.repo");
 
 
 // define Factory class to create product
@@ -51,10 +51,28 @@ class ProductFactory {
         // // Actually call the createProduct method to save to database
         // return await productInstance.createProduct();
     }
+    // put //
+    /**
+     * 
+     * @param {*} param0 
+     * @returns 
+     */
+    static async publishProductByShop({product_shop, product_id}) {
+        return await publishProductByShop({
+            product_shop,
+            product_id
+        })
+    }
 
-    static async findAllDraftsForShop({ query, limit = 50, skip = 0 }) {
+    // query //
+    static async findAllDraftsForShop({ product_shop, limit = 50, skip = 0 }) {
         const query = {product_shop, isDraft: true};
         return await findAllDraftsForShop({ query, limit, skip });
+    }
+
+    static async findAllPublishedForShop({ product_shop, limit = 50, skip = 0 }) {
+        const query = {product_shop, isPublished: true};
+        return await findAllPublishedForShop({ query, limit, skip });
     }
 }
 
